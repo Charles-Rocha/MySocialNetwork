@@ -1,5 +1,4 @@
-<h1 align="center">    
-    <p>MySocialNetwork</p>
+<h1 align="center">        
     <img src="./imagens/tela_login.png"/>
     </br></br>    
 	<img src="./imagens/tela_criacao_usuario.png"/>
