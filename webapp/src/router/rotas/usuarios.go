@@ -9,7 +9,7 @@ var rotasUsuarios = []Rota{
 	{
 		Uri:                "/criar-usuario",
 		Metodo:             http.MethodGet,
-		Funcao:             controllers.CarregarPaginaDeCadastroDoUsuario,
+		Funcao:             controllers.CarregarPaginaDeCadastroDeUsuario,
 		RequerAutenticacao: false,
 	},
 	{

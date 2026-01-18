@@ -2,10 +2,10 @@ $('#formulario-cadastro').on('submit', criarUsuario);
 
 function criarUsuario(evento){
     evento.preventDefault();
-    console.log("Dentro da função CriarUsuario");
+    //console.log("Dentro da função CriarUsuario");
 
     if ($('#senha').val() != $('#confirmar-senha').val()){
-        alert("As senha são diferentes!");
+        alert("As senhas são diferentes!");
         return;
     }
 
@@ -19,9 +19,9 @@ function criarUsuario(evento){
             senha: $('#senha').val()
         }
     }).done(function(){//O Ajax sabe identificar se deu certo ou não baseado no StatusCode. 200 201 204
-        alert('Usuário cadastrado com sucesso!')
+        alert('Usuário cadastrado com sucesso!');
     }).fail(function(erro){
-        console.log(erro)
-        alert('Erro ao tentar cadastrar usuário!')
+        console.log(erro);
+        alert('Erro ao tentar cadastrar usuário!');
     });
 }

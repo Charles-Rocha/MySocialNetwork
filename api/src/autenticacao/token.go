@@ -13,7 +13,7 @@ import (
 )
 
 // CriarToken retorna um token assinado com as permissões do usuário
-func CriarToken(usuarioId int) (string, error) {
+func CriarToken(usuarioId uint64) (string, error) {
 	permissoes := jwt.MapClaims{}
 	permissoes["authorized"] = true
 	permissoes["exp"] = time.Now().Add(time.Hour * 6).Unix()

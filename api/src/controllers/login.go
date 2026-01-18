@@ -11,6 +11,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"strconv"
 )
 
 // Login é responsável por autenticar um usuário na API
@@ -53,6 +54,10 @@ func Login(res http.ResponseWriter, req *http.Request) {
 		return
 	}
 
+	usuarioId := strconv.FormatUint(usuarioSalvoNoBanco.ID, 10)
+
+	respostas.JSON(res, http.StatusOK, modelos.DadosAutenticacao{ID: usuarioId, Token: token})
+
 	fmt.Println(token)
-	res.Write([]byte(token))
+	//res.Write([]byte(token)) //Resposta da requisição
 }

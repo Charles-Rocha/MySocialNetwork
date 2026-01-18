@@ -1,0 +1,49 @@
+package controllers
+
+import (
+	"bytes"
+	"encoding/json"
+	"fmt"
+	"net/http"
+	"webapp/src/config"
+	"webapp/src/modelos"
+	"webapp/src/respostas"
+)
+
+// FazerLogin utiliza o e-mail e senha do usuário para autenticar na aplicação
+func FazerLogin(res http.ResponseWriter, req *http.Request) {
+	req.ParseForm()
+
+	usuario, erro := json.Marshal(map[string]string{
+		"email": req.FormValue("email"),
+		"senha": req.FormValue("senha"),
+	})
+
+	if erro != nil {
+		respostas.JSON(res, http.StatusBadRequest, respostas.ErroAPI{Erro: erro.Error()})
+		return
+	}
+
+	url := fmt.Sprintf("%s/login", config.ApiUrl)
+	response, erro := http.Post(url, "application/json", bytes.NewBuffer(usuario))
+	if erro != nil {
+		respostas.JSON(res, http.StatusInternalServerError, respostas.ErroAPI{Erro: erro.Error()})
+		return
+	}
+	defer response.Body.Close()
+
+	if response.StatusCode >= 400 {
+		respostas.TratarStatusCodeDeErro(res, response)
+		return
+	}
+
+	var dadosAutenticacao modelos.DadosAutenticacao
+	if erro = json.NewDecoder(response.Body).Decode(&dadosAutenticacao); erro != nil {
+		respostas.JSON(res, http.StatusUnprocessableEntity, respostas.ErroAPI{Erro: erro.Error()})
+	}
+
+	respostas.JSON(res, http.StatusOK, nil)
+	//token, _ := ioutil.ReadAll(response.Body)
+	//fmt.Println(response.StatusCode, string(token))
+
+}

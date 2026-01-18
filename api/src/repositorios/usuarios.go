@@ -17,7 +17,7 @@ func NovoRepositorioDeUsuarios(db *sql.DB) *usuarios {
 }
 
 // Criar insere um usuário no banco de dados - Método
-func (repositorio usuarios) Criar(usuario modelos.Usuario) (int, error) {
+func (repositorio usuarios) Criar(usuario modelos.Usuario) (uint64, error) {
 	statement, erro := repositorio.db.Prepare(
 		"INSERT INTO usuarios1 (nome, nick, email, senha) VALUES(?, ?, ?, ?)",
 	)
@@ -35,7 +35,7 @@ func (repositorio usuarios) Criar(usuario modelos.Usuario) (int, error) {
 	if erro != nil {
 		return 0, erro
 	}
-	return int(ultimoIdInserido), nil
+	return uint64(ultimoIdInserido), nil
 }
 
 // Listar traz todos os usuários que atendam a um filtro com nome ou nick

@@ -10,7 +10,7 @@ func CarregarTelaDeLogin(res http.ResponseWriter, req *http.Request) {
 	utils.ExecutarTemplate(res, "login.html", nil)
 }
 
-// CarregarPaginaDeCadastroDoUsuario irá carregar a página de cadastro do usuário
-func CarregarPaginaDeCadastroDoUsuario(res http.ResponseWriter, req *http.Request) {
+// CarregarPaginaDeCadastroDeUsuario irá carregar a página de cadastro do usuário
+func CarregarPaginaDeCadastroDeUsuario(res http.ResponseWriter, req *http.Request) {
 	utils.ExecutarTemplate(res, "cadastro.html", nil)
 }
