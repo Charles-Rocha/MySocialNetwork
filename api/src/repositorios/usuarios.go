@@ -54,7 +54,7 @@ func (repositorio usuarios) Listar(nomeOuNick string) ([]modelos.Usuario, error)
 	for linhas.Next() {
 		var usuario modelos.Usuario
 		if erro = linhas.Scan(
-			&usuario.ID,
+			&usuario.UsuarioId,
 			&usuario.Nome,
 			&usuario.Nick,
 			&usuario.Email,
@@ -69,8 +69,9 @@ func (repositorio usuarios) Listar(nomeOuNick string) ([]modelos.Usuario, error)
 
 // ListarUsuarioPorId traz o usuário do banco de dados da tabela usuarios através do seu Id
 func (repositorio usuarios) ListarUsuarioPorId(usuarioId int64) (modelos.Usuario, error) {
+	//fmt.Println("usuarioId: ", usuarioId)
 	linhas, erro := repositorio.db.Query(
-		"SELECT id, nome, nick, email, criadoem from usuarios1 WHERE Id = ?", usuarioId,
+		"SELECT id, nome, nick, email, criadoem from usuarios1 WHERE Id=?", usuarioId,
 	)
 	if erro != nil {
 		return modelos.Usuario{}, erro
@@ -80,7 +81,7 @@ func (repositorio usuarios) ListarUsuarioPorId(usuarioId int64) (modelos.Usuario
 	var usuario modelos.Usuario
 	if linhas.Next() {
 		if erro = linhas.Scan(
-			&usuarioId,
+			&usuario.UsuarioId,
 			&usuario.Nome,
 			&usuario.Nick,
 			&usuario.Email,
@@ -89,6 +90,7 @@ func (repositorio usuarios) ListarUsuarioPorId(usuarioId int64) (modelos.Usuario
 			return modelos.Usuario{}, erro
 		}
 	}
+	fmt.Println(usuario)
 	return usuario, nil
 }
 
@@ -136,7 +138,7 @@ func (repositorio usuarios) ListarUsuarioPorEmail(usuarioEmail string) (modelos.
 
 	var usuario modelos.Usuario
 	if linha.Next() {
-		if erro = linha.Scan(&usuario.ID, &usuario.Senha); erro != nil {
+		if erro = linha.Scan(&usuario.UsuarioId, &usuario.Senha); erro != nil {
 			return modelos.Usuario{}, erro
 		}
 	}
@@ -196,7 +198,7 @@ func (repositorio usuarios) ListarSeguidores(usuarioId uint64) ([]modelos.Usuari
 		var usuario modelos.Usuario
 
 		if erro = linhas.Scan(
-			&usuario.ID,
+			&usuario.UsuarioId,
 			&usuario.Nome,
 			&usuario.Nick,
 			&usuario.Email,
@@ -207,7 +209,7 @@ func (repositorio usuarios) ListarSeguidores(usuarioId uint64) ([]modelos.Usuari
 
 		usuarios = append(usuarios, usuario)
 	}
-
+	fmt.Println(usuarios)
 	return usuarios, nil
 }
 
@@ -227,7 +229,7 @@ func (repositorio usuarios) ListarSeguindo(usuarioId uint64) ([]modelos.Usuario,
 		var usuario modelos.Usuario
 
 		if erro = linhas.Scan(
-			&usuario.ID,
+			&usuario.UsuarioId,
 			&usuario.Nome,
 			&usuario.Nick,
 			&usuario.Email,

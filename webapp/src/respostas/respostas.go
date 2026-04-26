@@ -16,18 +16,20 @@ func JSON(res http.ResponseWriter, statusCode int, dados interface{}) {
 	res.Header().Set("Content-Type", "application/json")
 	res.WriteHeader(statusCode)
 
-	//if dados != nil {
-	//	if erro := json.NewEncoder(res).Encode(dados); erro != nil {
-	//		log.Fatal(erro)
-	//	}
-	//}
+	/* if dados != nil {
+		if erro := json.NewEncoder(res).Encode(dados); erro != nil {
+			log.Fatal(erro)
+		}
+	} */
 
-	if erro := json.NewEncoder(res).Encode(dados); erro != nil {
-		log.Fatal(erro)
+	if statusCode != http.StatusNoContent {
+		if erro := json.NewEncoder(res).Encode(dados); erro != nil {
+			log.Fatal(erro)
+		}
 	}
 }
 
-// TratarStatusCodeDeErro trata os StatusCode de erro das requisições (igual o maior que 400)
+// TratarStatusCodeDeErro trata os StatusCode de erro das requisições (igual ou maior que 400)
 func TratarStatusCodeDeErro(res http.ResponseWriter, req *http.Response) {
 	var erro ErroAPI
 	json.NewDecoder(req.Body).Decode(&erro)

@@ -48,15 +48,15 @@ func Login(res http.ResponseWriter, req *http.Request) {
 	}
 
 	//res.Write([]byte("Autenticação feita com suceso!"))
-	token, erro := autenticacao.CriarToken(usuarioSalvoNoBanco.ID)
+	token, erro := autenticacao.CriarToken(usuarioSalvoNoBanco.UsuarioId)
 	if erro != nil {
 		respostas.Erro(res, http.StatusInternalServerError, erro)
 		return
 	}
 
-	usuarioId := strconv.FormatUint(usuarioSalvoNoBanco.ID, 10)
+	usuarioId := strconv.FormatUint(usuarioSalvoNoBanco.UsuarioId, 10)
 
-	respostas.JSON(res, http.StatusOK, modelos.DadosAutenticacao{ID: usuarioId, Token: token})
+	respostas.JSON(res, http.StatusOK, modelos.DadosAutenticacao{UsuarioId: usuarioId, Token: token})
 
 	fmt.Println(token)
 	//res.Write([]byte(token)) //Resposta da requisição

@@ -54,7 +54,7 @@ func (repositorio Publicacoes) ListarPorId(publicacaoId uint64) (modelos.Publica
 	var publicacao modelos.Publicacao
 	if linhas.Next() {
 		if erro = linhas.Scan(
-			&publicacao.ID,
+			&publicacao.UsuarioId,
 			&publicacao.Titulo,
 			&publicacao.Conteudo,
 			&publicacao.AutorUserId,
@@ -90,7 +90,7 @@ func (repositorio Publicacoes) Listar(usuarioId uint64) ([]modelos.Publicacao, e
 		var publicacao modelos.Publicacao
 
 		if erro = linhas.Scan(
-			&publicacao.ID,
+			&publicacao.UsuarioId,
 			&publicacao.Titulo,
 			&publicacao.Conteudo,
 			&publicacao.AutorUserId,
@@ -165,7 +165,7 @@ func (repositorio Publicacoes) ListarPorUsuario(usuarioId uint64) ([]modelos.Pub
 		var publicacao modelos.Publicacao
 
 		if erro = linhas.Scan(
-			&publicacao.ID,
+			&publicacao.UsuarioId,
 			&publicacao.Titulo,
 			&publicacao.Conteudo,
 			&publicacao.AutorUserId,

@@ -44,7 +44,7 @@ func CriarUsuario(res http.ResponseWriter, req *http.Request) {
 	defer db.Close()
 
 	repositorio := repositorios.NovoRepositorioDeUsuarios(db)
-	usuario.ID, erro = repositorio.Criar(usuario)
+	usuario.UsuarioId, erro = repositorio.Criar(usuario)
 	if erro != nil {
 		respostas.Erro(res, http.StatusInternalServerError, erro)
 		return
@@ -77,7 +77,7 @@ func ListarUsuarios(res http.ResponseWriter, req *http.Request) {
 func ListarUsuario(res http.ResponseWriter, req *http.Request) {
 	parametros := mux.Vars(req)
 
-	usuarioID, erro := strconv.ParseInt(parametros["usuarioId"], 10, 64)
+	usuarioId, erro := strconv.ParseInt(parametros["usuarioId"], 10, 64)
 	if erro != nil {
 		respostas.Erro(res, http.StatusBadRequest, erro)
 		return
@@ -91,7 +91,7 @@ func ListarUsuario(res http.ResponseWriter, req *http.Request) {
 	defer db.Close()
 
 	repositorio := repositorios.NovoRepositorioDeUsuarios(db)
-	usuario, erro := repositorio.ListarUsuarioPorId(usuarioID)
+	usuario, erro := repositorio.ListarUsuarioPorId(usuarioId)
 	if erro != nil {
 		respostas.Erro(res, http.StatusInternalServerError, erro)
 		return
@@ -102,19 +102,19 @@ func ListarUsuario(res http.ResponseWriter, req *http.Request) {
 // AtualizarUsuario atualiza os dados de um usuário específico salvo no banco de dados da tabela usuarios
 func AtualizarUsuario(res http.ResponseWriter, req *http.Request) {
 	parametros := mux.Vars(req)
-	usuarioID, erro := strconv.ParseUint(parametros["usuarioId"], 10, 64)
+	usuarioId, erro := strconv.ParseUint(parametros["usuarioId"], 10, 64)
 	if erro != nil {
 		respostas.Erro(res, http.StatusBadRequest, erro)
 		return
 	}
 
-	usuarioIDNoToken, erro := autenticacao.ExtrairUsarioId(req)
+	usuarioIdNoToken, erro := autenticacao.ExtrairUsarioId(req)
 	if erro != nil {
 		respostas.Erro(res, http.StatusUnauthorized, erro)
 		return
 	}
 
-	if usuarioID != usuarioIDNoToken {
+	if usuarioId != usuarioIdNoToken {
 		respostas.Erro(res, http.StatusForbidden, errors.New("não é possível atualizar um usuário que não seja o seu"))
 		return
 	}
@@ -144,7 +144,7 @@ func AtualizarUsuario(res http.ResponseWriter, req *http.Request) {
 	defer db.Close()
 
 	repositorio := repositorios.NovoRepositorioDeUsuarios(db)
-	erro = repositorio.AtualizarUsuario(usuarioID, usuario)
+	erro = repositorio.AtualizarUsuario(usuarioId, usuario)
 	if erro != nil {
 		respostas.Erro(res, http.StatusInternalServerError, erro)
 		return
@@ -156,19 +156,19 @@ func AtualizarUsuario(res http.ResponseWriter, req *http.Request) {
 // DeletarUsuario remove um usuário específico do banco de dados da tabela usuarios
 func DeletarUsuario(res http.ResponseWriter, req *http.Request) {
 	parametros := mux.Vars(req)
-	usuarioID, erro := strconv.ParseUint(parametros["usuarioId"], 10, 64)
+	usuarioId, erro := strconv.ParseUint(parametros["usuarioId"], 10, 64)
 	if erro != nil {
 		respostas.Erro(res, http.StatusBadRequest, erro)
 		return
 	}
 
-	usuarioIDNoToken, erro := autenticacao.ExtrairUsarioId(req)
+	usuarioIdNoToken, erro := autenticacao.ExtrairUsarioId(req)
 	if erro != nil {
 		respostas.Erro(res, http.StatusUnauthorized, erro)
 		return
 	}
 
-	if usuarioID != usuarioIDNoToken {
+	if usuarioId != usuarioIdNoToken {
 		respostas.Erro(res, http.StatusForbidden, errors.New("não é possível excluir um usuário que não seja o seu"))
 		return
 	}
@@ -181,7 +181,7 @@ func DeletarUsuario(res http.ResponseWriter, req *http.Request) {
 	defer db.Close()
 
 	repositorio := repositorios.NovoRepositorioDeUsuarios(db)
-	erro = repositorio.DeletarUsuario(usuarioID)
+	erro = repositorio.DeletarUsuario(usuarioId)
 	if erro != nil {
 		respostas.Erro(res, http.StatusInternalServerError, erro)
 		return
@@ -207,7 +207,7 @@ func SeguirUsuario(res http.ResponseWriter, req *http.Request) {
 	}
 
 	if seguidorId == usuarioId {
-		respostas.Erro(res, http.StatusBadRequest, errors.New("não é possível seguir você mesmo"))
+		respostas.Erro(res, http.StatusBadRequest, errors.New("Não é possível seguir você mesmo"))
 		return
 	}
 

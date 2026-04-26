@@ -1,9 +1,9 @@
 $('#login').on('submit', fazerLogin);
 
 function fazerLogin(evento){
-    alert('Dentro da função Login');
+    //alert('Dentro da função Login');
     evento.preventDefault();
-    console.log("Dentro da função CriarUsuario");
+    //console.log("Dentro da função Login");
     
     $.ajax({
         url: "/login",
@@ -13,11 +13,11 @@ function fazerLogin(evento){
             senha: $('#senha').val(),
         }
     }).done(function(){//O Ajax sabe identificar se deu certo ou não baseado no StatusCode. 200 201 204
-        alert('Login OK')
+        //alert('Login OK')
         window.location = "/home"
     }).fail(function(erro){  
-        console.log(erro)      
-        alert('Usuário ou senha inválidos!')
+        console.log(erro) 
+        Swal.fire("Atenção", "Usuário ou senha inválidos.", "error");             
     });
 }
 

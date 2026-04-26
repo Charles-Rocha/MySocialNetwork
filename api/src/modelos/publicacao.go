@@ -8,7 +8,7 @@ import (
 
 // Publicao representa a publicação feita por um usuário
 type Publicacao struct {
-	ID          uint64    `json:"id,omitempty"`
+	UsuarioId   uint64    `json:"id,omitempty"`
 	Titulo      string    `json:"titulo,omitempty"`
 	Conteudo    string    `json:"conteudo,omitempty"`
 	AutorUserId uint64    `json:"autoruserId,omitempty"` //Id do usuário criador da publicação

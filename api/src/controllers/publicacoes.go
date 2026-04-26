@@ -50,7 +50,7 @@ func CriarPublicacao(res http.ResponseWriter, req *http.Request) {
 	defer db.Close()
 
 	repositorio := repositorios.NovoRepositorioDePublicacoes(db)
-	publicacao.ID, erro = repositorio.Criar(publicacao)
+	publicacao.UsuarioId, erro = repositorio.Criar(publicacao)
 	if erro != nil {
 		respostas.Erro(res, http.StatusInternalServerError, erro)
 		return
