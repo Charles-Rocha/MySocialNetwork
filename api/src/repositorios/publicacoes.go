@@ -74,10 +74,14 @@ func (repositorio Publicacoes) Listar(usuarioId uint64) ([]modelos.Publicacao, e
 	linhas, erro := repositorio.db.Query(`
 		SELECT DISTINCT p.*, u.nick FROM publicacoes1 p
 		INNER JOIN usuarios1 u on u.id = p.autor_user_id
+		WHERE u.id = ?
+		UNION
+		SELECT DISTINCT p.*, u.nick FROM publicacoes1 p
+		INNER JOIN usuarios1 u on u.id = p.autor_user_id
 		INNER JOIN seguidores1 s on s.usuario_id = p.autor_user_id
-		WHERE u.id = ? or s.seguidor_id = ?
+		WHERE u.id = ? OR s.seguidor_id = ?
 		ORDER BY 1 DESC`, //ORDER BY 1 significa que ele vai ordenar pela primeira coluna dessa query, no caso aqui, o p.* que seria p.id
-		usuarioId, usuarioId,
+		usuarioId, usuarioId, usuarioId,
 	)
 
 	if erro != nil {
