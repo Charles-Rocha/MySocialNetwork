@@ -54,9 +54,9 @@
 
 - **Tela de Login**: Primeira tela que é mostrada ao usuário, que serve basicamente para logar no sistema, ou criar um usuário caso ainda não possua.
 - **Tela de Criação de Usuário**: Tela para criação de usuário para ser utilizado no sistema **MySocialNetwork**.
-- **Página Principal**: Mostra a página principal com as **Publicações** do usuário logado e também dos usuários ao qual está sendo seguido. É possível também criar uma nova publicação, curtir ou descurtir a publicação de um usuário que está seguindo. 
+- **Página Principal**: Mostra a página principal com as **Publicações** do usuário logado e também dos usuários ao qual está sendo seguido. É possível também criar uma nova publicação, curtir ou descurtir a publicação de um usuário que está seguindo, editar ou deletar sua própria publicação. 
 - **Buscar Usuário**: Tela para buscar um usuário no sistema **MySocialNetwork**, onde, após encontrado o usuário, tem-se a possibilidade de **Seguir** ou **Parar de Seguir** esse usuário.
-- **Lista de Seguidores**: Mostra uma pequena lista de usuárioe ao qual o usuário logado está sendo seguido.
+- **Lista de Seguidores**: Mostra uma pequena lista de usuários ao qual o usuário logado está sendo seguido.
 - **Lista de Seguindo**: Mostra uma pequena lista de usuários ao qual o usuário logado está seguindo.
 - **Meu Perfil**: Carrega a página do perfil do usuário logado, mostrando suas publicações criadas e também com as opções de **Editar Dados** e **Atualizar Senha**.
   - **OBS.:** Ao final da página, tem uma opção para **Excluir Conta Permanentemente**. Ao clicar nesse botão, é mostrado um alerta ao usuário informando que essa ação é irreversível.
