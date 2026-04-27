@@ -47,8 +47,8 @@
 
 ## 💡 Executando a Aplicação
 
-- **Execução da API**: Executar o arquivo api.exe localizado na pasta **\MySocialNetwork\api\api.exe**. A API estará rodando na porta 3300.
-- **Execução do Site (webapp)**: Executar o arquivo webapp.exe localizado na pasta **\MySocialNetwork\webapp\webapp.exe**. O Site estará rodando na porta 3000.
+- **Execução da API**: Executar o arquivo **api.exe** localizado na pasta **\MySocialNetwork\api\api.exe**. A API estará rodando na porta 3300.
+- **Execução do Site (webapp)**: Executar o arquivo **webapp.exe** localizado na pasta **\MySocialNetwork\webapp\webapp.exe**. O Site estará rodando na porta 3000.
 
 ## 💡 Funcionalidades
 
